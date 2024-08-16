@@ -1,0 +1,30 @@
+version: "3.8"
+
+services:
+  frontend:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app:cached # Mount the current directory to /app inside the container
+      - /app/node_modules # Prevents overwriting node_modules inside the container
+
+    environment:
+      - CHOKIDAR_USEPOLLING=true
+      - CHOKIDAR_INTERVAL=1000
+      - MAX_EVENT_HANDLERS=524288 # Increase the number of event handlers
+      - WATCHPACK_POLLING=true
+  tests:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - /app/node_modules
+      - .:/app
+    command: ["npm", "run", "test"]
+
+    stdin_open: true # Keep stdin open to support live reload
+    tty: true # Allocate a pseudo-TTY for better interaction
+
