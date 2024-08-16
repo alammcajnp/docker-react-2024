@@ -2,6 +2,7 @@ sudo: required
 services:
   - docker
 
+#before install it should be availabe
 before_install:
   - docker build -t alammcajnp/docker-react-2024 -f Dockerfile.dev .
 
