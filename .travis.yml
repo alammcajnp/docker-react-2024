@@ -6,4 +6,4 @@ before_install:
   - docker build -t alammcajnp/docker-react-2024 -f Dockerfile.dev .
 
 script:
-  - docker run-e CI=true alammcajnp/docker-react-2024 npm run test -- --coverage
+  - docker run alammcajnp/docker-react-2024 npm run test -- --coverage
