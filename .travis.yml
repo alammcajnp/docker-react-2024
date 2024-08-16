@@ -4,6 +4,6 @@ services:
 
 before_install:
   - docker build -t alammcajnp/docker-react-2024 -f Dockerfile.dev .
-#script
+
 script:
   - docker run alammcajnp/docker-react-2024 npm run test -- --coverage
